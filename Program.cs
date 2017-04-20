@@ -4,11 +4,10 @@ namespace FunctionalProgramming
 {
     class Program
     {
-        delegate void SayGreeting(string name);
-      
         static void Main(string[] args)
         {
-          SayGreeting sayGreeting = delegate(string name)
+          Action<string> sayGreeting;
+          sayGreeting = delegate(string name)
           {
             Console.WriteLine(string.Format("Hello, {0}", name));
           };
