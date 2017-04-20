@@ -7,23 +7,24 @@ namespace FunctionalProgramming
         static void Main(string[] args)
         {
           Action<string> sayGreeting;
-          sayGreeting = delegate(string name)
+          
+          Func<string, string> conversate = delegate(string message)
           {
-            Console.WriteLine(string.Format("Hello, {0}", name));
+            Console.WriteLine(message);
+            return Console.ReadLine();
           };
           
-          Console.WriteLine("What's your name?");
-          string input = Console.ReadLine();
-          sayGreeting(input);
+          string input = conversate("What's your name?");
           
-          Console.ReadLine();
-          
-          sayGreeting = delegate(string name)
+          sayGreeting = delegate(string greeting)
           {
-            Console.WriteLine(string.Format("Later, {0}", name));
+            Console.WriteLine(string.Format(greeting, input));
           };
           
-          sayGreeting(input);
+          sayGreeting("Hello, {0}");
+          conversate("Nice to see you!");
+          conversate("How are you doing?");
+          sayGreeting("Later, {0}");
         }
     }
 }
